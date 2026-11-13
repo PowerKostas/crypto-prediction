@@ -52,8 +52,8 @@ while True:
         print('\nCrypto',str(i+1)+'/'+str(len(crypto_names)))
 
         # Finds if this crypto is in the database
-        already_analysed_crypto=pd.read_csv('C:/Users/Kostas/Desktop/Coding/Codes/Crypto Price Prediction/Data_Analysed.csv')
-        with open('C:/Users/Kostas/Desktop/Coding/Codes/Crypto Price Prediction/Data_Analysed.csv','r') as file:
+        already_analysed_crypto=pd.read_csv('C:/Users/Kostas/Desktop/Coding/Codes/Crypto Price Prediction/data_analysed.csv')
+        with open('C:/Users/Kostas/Desktop/Coding/Codes/Crypto Price Prediction/data_analysed.csv','r') as file:
             new_coin_flag=True
             pos=len(already_analysed_crypto)
             for j in range(len(already_analysed_crypto)):
@@ -164,13 +164,13 @@ while True:
             
             date=datetime.now().strftime('%Y-%m-%d') # Format needed for the api
             if new_coin_flag: # If its a new coin it appends all the data
-                with open('C:/Users/Kostas/Desktop/Coding/Codes/Crypto Price Prediction/Data_Analysed.csv','a') as file:
+                with open('C:/Users/Kostas/Desktop/Coding/Codes/Crypto Price Prediction/data_analysed.csv','a') as file:
                     file.write(crypto_names[i]+','+date+','+str(prediction_2[0][0])+','+str(prediction_1[0][0])+'\n')
             else: # Else it only updates the date and the last predictions
                 already_analysed_crypto.loc[pos,'Next_Date']=date 
                 already_analysed_crypto.loc[pos,'High_Prediction']=prediction_2[0][0]
                 already_analysed_crypto.loc[pos,'Close_Prediction']=prediction_1[0][0]
-                already_analysed_crypto.to_csv('C:/Users/Kostas/Desktop/Coding/Codes/Crypto Price Prediction/Data_Analysed.csv',index=False)
+                already_analysed_crypto.to_csv('C:/Users/Kostas/Desktop/Coding/Codes/Crypto Price Prediction/data_analysed.csv',index=False)
         else:
             prediction_2=already_analysed_crypto.loc[pos,'High_Prediction']
             prediction_1=already_analysed_crypto.loc[pos,'Close_Prediction']
